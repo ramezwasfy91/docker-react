@@ -1,0 +1,21 @@
+version: "3"
+services:
+  react_frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      # do not try to map a folder up against /app/node_modules inside the container.
+      - /app/node_modules/
+      - .:/app
+  react_tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    #override the default container command npm run start
+    command: ["npm", "run", "test"]

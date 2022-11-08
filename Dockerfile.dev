@@ -1,0 +1,22 @@
+# Specify a base image
+FROM node:16-alpine
+
+# specify the working directory
+WORKDIR '/app'
+
+# copy dependencies first from local FS to container to avoid unnecessary dependencies re-installing
+COPY package.json .
+
+# install some dependencies
+RUN npm install
+
+# Copy everything else including the application code index.js
+COPY ./ ./
+
+# run command to start our application
+CMD ["npm", "run", "start"]
+
+
+# VIP note remove node_modules directory to avoid duplicates with dependencies.
+# node_modules contains the installed packages already which is duplicated by npm install.
+# docker build -f Dockerfile.dev .
