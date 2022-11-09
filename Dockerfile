@@ -18,7 +18,7 @@ COPY ./ ./
 # run command to start our application
 # the build folder will be created in the same workdirectory after execution of below command.
 # /app/build will be the folder that have all the stuff we care about.
-CMD ["npm", "run", "build"]
+RUN npm run build
 
 
 # You'll notice that we did not have to put any terminology or any syntax in here to specify or say
