@@ -25,6 +25,10 @@ CMD ["npm", "run", "build"]
 #that the initial phase that we have right here was stopping by just putting in a second from statement
 #that essentially says, "Okay previous block all complete don't worry about it".
 FROM nginx
+
+# putting expose 80 will do actually nothing in terms of testing locally ,
+# however for elasicbeanstalk this will be used to map port numbers/
+EXPOSE 80
 # copy /app/build from builder phase to nginx configuration location.
 COPY --from=builder /app/build /usr/share/nginx/html
 
